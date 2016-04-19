@@ -9,11 +9,11 @@
         "extension"
     ],
     "icon": "logo.png",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "Stormspirit",
-    "homepage": "https://github.com/Naixor/eval",
+    "homepage": "https://github.com/Naixor/eval-vscode-extension",
     "bugs": {
-        "url": "https://github.com/Naixor/eval/issues",
+        "url": "https://github.com/Naixor/eval-vscode-extension/issues",
         "email": "hongyesoftware@gmail.com"
     },
     "engines": {
