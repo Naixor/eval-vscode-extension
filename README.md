@@ -4,6 +4,6 @@
 
 ## Use it!
 
-![](https://github.com/Naixor/eval-vscode-extension/master/1.gif)
+![](https://raw.githubusercontent.com/Naixor/eval-vscode-extension/master/1.gif)
 
 **Enjoy!**
