@@ -11,6 +11,11 @@
     "icon": "logo.png",
     "version": "0.0.1",
     "publisher": "Stormspirit",
+    "homepage": "https://github.com/Naixor/eval",
+    "bugs": {
+        "url": "https://github.com/Naixor/eval/issues",
+        "email": "hongyesoftware@gmail.com"
+    },
     "engines": {
         "vscode": "^0.10.10"
     },
