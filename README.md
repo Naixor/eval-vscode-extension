@@ -6,4 +6,9 @@
 
 ![](https://raw.githubusercontent.com/Naixor/eval-vscode-extension/master/1.gif)
 
+## Configuration
+
+### eval.replaceNumberFormula
+> `default`: `false`
+
 **Enjoy!**

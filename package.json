@@ -9,7 +9,7 @@
         "extension"
     ],
     "icon": "logo.png",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "publisher": "Stormspirit",
     "homepage": "https://github.com/Naixor/eval-vscode-extension",
     "bugs": {
@@ -30,7 +30,17 @@
         "commands": [{
             "command": "extension.eval",
             "title": "Eval"
-        }]
+        }],
+        "configuration": {
+            "title": "Eval config",
+            "properties": {
+                "eval.replaceNumberFormula": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Replace your formula with it's number result." 
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
