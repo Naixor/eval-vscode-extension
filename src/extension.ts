@@ -33,35 +33,36 @@ export function activate(context: vscode.ExtensionContext) {
         let selection = activeEditor.selections[0];
         let text = activeEditor.document.getText(selection);
         let result;
-        
+        const isBeautify = vscode.workspace.getConfiguration('eval').get('beautifyObject')
+
         if (CodeTypeRegExp.anonymousFunction.test(text)) {
             vscode.window.showInputBox({prompt: 'Please input your arguments.'}).then(args => {
                 text = text.replace(CodeTypeRegExp.anonymousFunction, (all, match) => {
                     return match;
                 });
                 text = `(${text})(${args})`;
-                result = cal(text);
+                result = cal(text, isBeautify);
                 showOutput(result);
             });
         } else if (CodeTypeRegExp.normalFunction.test(text)) {
             text = text.replace(CodeTypeRegExp.normalFunction, (all, match) => {
                 return match;
             });
-            result = cal(text);
+            result = cal(text, isBeautify);
             if (result === undefined) {
                 vscode.window.showInputBox({prompt: 'Please input your arguments.'}).then(args => {
                     text = `(${text})(${args})`;
-                    result = cal(text);
+                    result = cal(text, isBeautify);
                     showOutput(result);
                 });
             } else {
                 showOutput(result);
             }
         } else if (CodeTypeRegExp.closureFunction.test(text)) {
-            result = cal(text);
+            result = cal(text, isBeautify);
             showOutput(result);
         } else {
-            result = cal(text);
+            result = cal(text, isBeautify);
             if (typeof result === "number" && vscode.workspace.getConfiguration('eval').get('replaceNumberFormula')) {
                 activeEditor.edit(editor => {
                     editor.replace(new vscode.Range(selection.start, selection.end), '' + result);
@@ -93,12 +94,15 @@ function isFileExtIllegal(fileExt) {
     }
 }
 
-function cal(text) {
+function cal(text, isBeauty?) {
     let result;
     try {
         result = eval(text);
     } catch (error) {
         result = error.toString();
+    }
+    if (Object.prototype.toString.call(result) === "[object Object]") {
+        result = JSON.stringify(result, null, isBeauty ? 4 : 0);
     }
     return result;
 }

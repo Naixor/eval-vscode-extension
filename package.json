@@ -9,7 +9,7 @@
         "extension"
     ],
     "icon": "logo.png",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "Stormspirit",
     "homepage": "https://github.com/Naixor/eval-vscode-extension",
     "bugs": {
@@ -38,6 +38,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Replace your formula with it's number result." 
+                },
+                "eval.beautifyObject": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Beautify object output or not."
                 }
             }
         }

@@ -29,13 +29,14 @@ function activate(context) {
         var selection = activeEditor.selections[0];
         var text = activeEditor.document.getText(selection);
         var result;
+        var isBeautify = vscode.workspace.getConfiguration('eval').get('beautifyObject');
         if (CodeTypeRegExp.anonymousFunction.test(text)) {
             vscode.window.showInputBox({ prompt: 'Please input your arguments.' }).then(function (args) {
                 text = text.replace(CodeTypeRegExp.anonymousFunction, function (all, match) {
                     return match;
                 });
                 text = "(" + text + ")(" + args + ")";
-                result = cal(text);
+                result = cal(text, isBeautify);
                 showOutput(result);
             });
         }
@@ -43,11 +44,11 @@ function activate(context) {
             text = text.replace(CodeTypeRegExp.normalFunction, function (all, match) {
                 return match;
             });
-            result = cal(text);
+            result = cal(text, isBeautify);
             if (result === undefined) {
                 vscode.window.showInputBox({ prompt: 'Please input your arguments.' }).then(function (args) {
                     text = "(" + text + ")(" + args + ")";
-                    result = cal(text);
+                    result = cal(text, isBeautify);
                     showOutput(result);
                 });
             }
@@ -56,11 +57,11 @@ function activate(context) {
             }
         }
         else if (CodeTypeRegExp.closureFunction.test(text)) {
-            result = cal(text);
+            result = cal(text, isBeautify);
             showOutput(result);
         }
         else {
-            result = cal(text);
+            result = cal(text, isBeautify);
             if (typeof result === "number" && vscode.workspace.getConfiguration('eval').get('replaceNumberFormula')) {
                 activeEditor.edit(function (editor) {
                     editor.replace(new vscode.Range(selection.start, selection.end), '' + result);
@@ -90,13 +91,16 @@ function isFileExtIllegal(fileExt) {
             return true;
     }
 }
-function cal(text) {
+function cal(text, isBeauty) {
     var result;
     try {
         result = eval(text);
     }
     catch (error) {
         result = error.toString();
+    }
+    if (Object.prototype.toString.call(result) === "[object Object]") {
+        result = JSON.stringify(result, null, isBeauty ? 4 : 0);
     }
     return result;
 }

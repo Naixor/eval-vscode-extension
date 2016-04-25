@@ -9,6 +9,11 @@
 ## Configuration
 
 ### eval.replaceNumberFormula
+> Replace your formula with it's number result.<br>
 > `default`: `false`
+
+### eval.beautifyObject
+> Beautify object output or not.<br>
+> `default`: `true`
 
 **Enjoy!**
