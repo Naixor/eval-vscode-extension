@@ -100,7 +100,9 @@ function cal(text, isBeauty) {
         result = error.toString();
     }
     if (Object.prototype.toString.call(result) === "[object Object]") {
-        result = JSON.stringify(result, null, isBeauty ? 4 : 0);
+        var editor = void 0, tabSize = void 0;
+        tabSize = (editor = vscode.window.activeTextEditor) ? editor.options.tabSize : 4;
+        result = JSON.stringify(result, null, isBeauty ? tabSize : 0);
     }
     return result;
 }
