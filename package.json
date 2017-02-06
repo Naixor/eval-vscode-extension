@@ -11,6 +11,7 @@
     "icon": "logo.png",
     "version": "0.0.5",
     "publisher": "Stormspirit",
+    "license": "MIT",
     "homepage": "https://github.com/Naixor/eval-vscode-extension",
     "bugs": {
         "url": "https://github.com/Naixor/eval-vscode-extension/issues",
@@ -37,7 +38,7 @@
                 "eval.replaceNumberFormula": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Replace your formula with it's number result." 
+                    "description": "Replace your formula with it's number result."
                 },
                 "eval.beautifyObject": {
                     "type": "boolean",
